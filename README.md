@@ -11,4 +11,6 @@ The keystrokes are then converted into a numerical vector (features) in five sec
 
 After collecting keystroke data from two users, a simple linear regression model is fit on the keystroke data.
 
+A user then types and the program predicts which user just typed.
+
 Does it work? I'm not sure. It's a work in progress. 
