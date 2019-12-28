@@ -42,14 +42,12 @@ def collectData(output):
 
     logging.info("Entering typing loop.")
     print("""PLEASE TYPE THE PHRASES:
-    The cat walked to the grocery store and bought a kiwi.
-    The pig walked to the book store and bought a tribe book.
-    The cat then returned home and ate the kiwi, leaving trash and bowls everywhere.
-    The pig came come and cleaned the dishes.
-    The pig threw away the trash.
-    And the pig and cat were happy!
-    Oh, also please type a secret message too.
-    Please type: aeiou, aeiou, aeiou. You are now an expert on vowels!
+    Hear the bells, Christmas bells, ringing in the distance,
+    Past the moon, across the sky, we knew him in an instant
+    A small lad from the town, in the valley far below
+    Shouts "look up!" to all, “I can see Rudoph's bright red nose”
+    way up there, the small reindeer, pointing out the way
+    the gangs all here, as twelve more appear, to guide old Santa’s sleigh
     """)
 
     # infinite loop
