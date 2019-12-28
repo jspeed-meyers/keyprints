@@ -1,0 +1,4 @@
+keyprints/keyprints.log
+keyprints/output_data
+*.pyc
+*__pycache__*
