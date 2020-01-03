@@ -56,9 +56,9 @@ def analyze(keys):
 
     ## Convert dataset to pandas dataframe
     data = pd.DataFrame(data,
-                        columns=["a_mean", "a_std",
-                                 "b_mean", "b_std",
-                                 "c_mean", "c_std"])
+                        columns=["a_mean",
+                                 "b_mean",
+                                 "c_mean"])
 
     return data
 
@@ -97,7 +97,7 @@ def create_features(keys):
         letter = keys.loc[keys[letter] == 1].copy()
         letter['delta'] = letter.loc[:,'time'].diff()
         letter = letter[letter.stroke == 'release'].copy()
-        features.append([letter.delta.mean(), letter.delta.std()])
+        features.append([letter.delta.mean()])
 
     features = np.concatenate(features)
 

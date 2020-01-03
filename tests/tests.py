@@ -43,6 +43,7 @@ class CheckParser(unittest.TestCase):
 
 		## Check that analyzed keyprints and correct results are equal
 		check = True
+
 		try:
 			## Shape, types, and values must be true
 			assert_frame_equal(true_analyzed_keyprints, test_analyzed_keyprints)
@@ -64,11 +65,9 @@ class CheckParser(unittest.TestCase):
 		stable production.
 		"""
 
-		true_features_keyprints = np.array([.25, .5, 
+		true_features_keyprints = np.array([.25, 
 											.21428571428571427, 
-											.42581531362632, 
-											0.1111111111111111,
-											0.3233808333817773])
+											0.1111111111111111])
 
 		## Import and create features fo raw keyprint dataset
 		test_keyprints_path = "test_data/raw_keyprint_dataset.csv"
@@ -90,6 +89,7 @@ class CheckModeling(unittest.TestCase):
 		"""
 
 		## Import training dataset
+		## TODO: DROP COLUMNS FOR STANDARD DEVIATIONS IN THESE CSVS
 		training_prints_1 = pd.read_csv("test_data/user1.csv",
 			                            index_col=0)
 		training_prints_2 = pd.read_csv("test_data/user2.csv",
@@ -97,6 +97,14 @@ class CheckModeling(unittest.TestCase):
 
 		## Train model
 		model = train(training_prints_1, training_prints_2, False)
+
+		## Export pickled model
+		## Keep for when there are new models and test_predict must
+		## be updated
+		## TODO: Rerun models
+		#pickle_path = "test_data/model_pickle_new.pkl"
+		#with open(pickle_path,'wb') as f:
+		#	model = pickle.dump(model, f)		
 
 		## Extract model parameters, get hash of parameters after
 		## encoding and check against stored hash
@@ -106,7 +114,8 @@ class CheckModeling(unittest.TestCase):
 		model_hash = hashlib.md5(model_string_encoded).hexdigest()
 
 		## Check computed model hash is equal to correct hash
-		self.assertEqual(model_hash, "6fdb3bd7b1358f2d284d7d292e3eb02e")
+		## Must update when there is a new model
+		self.assertEqual(model_hash, "f82c223a814edcf96e7c549dc327a712")
 
 	def test_predict(self):
 		"""
@@ -114,7 +123,7 @@ class CheckModeling(unittest.TestCase):
 		"""
 
 		## Import pickled model
-		pickle_path = "test_data/model_pickle.pkl"
+		pickle_path = "test_data/model.pkl"
 		with open(pickle_path,'rb') as f:
 			model = pickle.load(f)
 
@@ -126,5 +135,6 @@ class CheckModeling(unittest.TestCase):
 		prediction = predict(keyprints, model)
 
 		## Check that result is correct
-		correct_prediction = ('User 2', 0.99)
+		## Must update when there is a new model
+		correct_prediction = ('User 2', 0.93)
 		self.assertEqual(prediction, correct_prediction)
